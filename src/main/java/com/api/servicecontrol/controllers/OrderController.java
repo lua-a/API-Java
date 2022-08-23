@@ -43,7 +43,7 @@ public class OrderController {
     public ResponseEntity<Object> getOneOrder(@PathVariable(value = "id") UUID id){
         Optional<OrderModel> orderModelOptional = orderService.findById(id);
         if (!orderModelOptional.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("order nao encontrado.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order não encontrado.");
         }
         return ResponseEntity.status(HttpStatus.OK).body(orderModelOptional.get());
 
@@ -53,7 +53,7 @@ public class OrderController {
     public ResponseEntity<Object> deleteItem(@PathVariable(value = "id") UUID id){
         Optional<OrderModel> orderModelOptional = orderService.findById(id);
         if (!orderModelOptional.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("item nao encontrado.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order não encontrado.");
         }
         orderService.delete(orderModelOptional.get());
         return ResponseEntity.status(HttpStatus.OK).body("");
@@ -64,7 +64,7 @@ public class OrderController {
                                              @RequestBody @Valid OrderDto orderDto){
         Optional<OrderModel> orderModelOptional = orderService.findById(id);
         if (!orderModelOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Item nao encontrado.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order não encontrado.");
         }
         var orderModel = new OrderModel();
         BeanUtils.copyProperties(orderDto, orderModel);
