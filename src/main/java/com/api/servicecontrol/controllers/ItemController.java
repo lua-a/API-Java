@@ -39,7 +39,7 @@ public class ItemController {
     public ResponseEntity<Object> getOneItem(@PathVariable(value = "id") UUID id){
         Optional<ItemModel> itemModelOptional = itemService.findById(id);
         if (!itemModelOptional.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("item nao encontrado.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Item não encontrado.");
         }
         return ResponseEntity.status(HttpStatus.OK).body(itemModelOptional.get());
 
@@ -49,7 +49,7 @@ public class ItemController {
     public ResponseEntity<Object> deleteItem(@PathVariable(value = "id") UUID id){
         Optional<ItemModel> itemModelOptional = itemService.findById(id);
         if (!itemModelOptional.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("item nao encontrado.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Item não encontrado.");
         }
         itemService.delete(itemModelOptional.get());
         return ResponseEntity.status(HttpStatus.OK).body("");
@@ -60,7 +60,7 @@ public class ItemController {
                                                     @RequestBody @Valid ItemDto itemDto){
         Optional<ItemModel> itemModelOptional = itemService.findById(id);
         if (!itemModelOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Item nao encontrado.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Item não encontrado.");
         }
         var itemModel = new ItemModel();
         BeanUtils.copyProperties(itemDto, itemModel);
